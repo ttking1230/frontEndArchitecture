@@ -1,9 +1,9 @@
 
 
-// npx  node 5.2以上版本提供的功能，帮助我们执行.bin目录下的文件
+// npx：  node5.2以上版本提供的功能，帮助我们执行.bin目录下的文件
 // 如果找不到会自动安装该模块
 
-//  npx babel 4.class.js -o es5.js -w
+// npx babel 4.class.js -o es5.js -w
 // node环境无法运行类的装饰器代码，需要转化成es5查看
 // 使用babel转化4.class.js，转成es5，文件名称为es5.js
 // -w = -watch 实时监控
