@@ -4,7 +4,7 @@
 // 实例属性继承只需要在子类构造函数中执行父类构造函数 b.call(this);
 // 1、a.prototype.__proto__ = b.prototype
 // 1这种方式ie低版本不支持，等价于 Object.setPrototypeOf(a.prototype,b.prototype) es6的写法
-// 2、a.prototype = Object.create(b.prototype,{constructor:{value:c}})
+// 2、a.prototype = Object.create(b.prototype,{constructor:{value:a}})
 // 使用Object.create实现继承，子类constructor会指向父类constructor，
 // 所以第二个参数可以修正子类constructor指向
 // 3、a.prototype = new B()； 弊端很大，无法给父类传参数
