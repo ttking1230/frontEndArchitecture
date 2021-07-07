@@ -1,4 +1,5 @@
 
+// 简单版本的promise实现 + 一个异步解决
 
 function Promise(executor) {
     // 给promise定义状态
