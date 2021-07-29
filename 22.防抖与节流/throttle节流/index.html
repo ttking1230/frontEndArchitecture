@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>节流</title>
     <style>
         button {
             width: 300px;
@@ -22,6 +22,7 @@
 </head>
 
 <body>
+    <!-- 节流定义：保证一段时间内，核心代码只执行一次   -->
     <!-- 节流  1s之内无论点击多少次，只执行一次 -->
     <button id="btn">快速点击</button>
     <script>
@@ -30,6 +31,7 @@
         //     console.log('111111111111111');
         // })
 
+        // 简易节流
         function throttle(fn, delay) {
             let last = 0;
             return function () {
@@ -45,6 +47,39 @@
             console.log('2222222222222');
         }
         btn.addEventListener('click', throttle(cb, 1000));
+
+        // underscore库throttle源码实现,options接受两个属性
+        // trailing：最后一次触发（默认触发）
+        // leading：为false时，第一次点击不会立即触发，延迟wait后触发
+        function underScoreThrottle(fn, wait, options) {
+            let args, context, previous = 0, timeout;
+            let later = function () {
+                previous = options.leading === false ? 0 : Date.now();
+                fn.apply(context, args);
+            }
+            let throttle = function () {
+                args = arguments;
+                context = this;
+                let now = Date.now();
+                if (!previous && options.leading === false) previous = now;
+                let remaining = wait - (now - previous);
+                if (remaining <= 0) {
+                    if (timeout) {
+                        clearTimeout(timeout);
+                        timeout = null;
+                    }
+                    fn.apply(context, args);
+                    previous = now;
+                } else if (!timeout && options.trailing !== false) {
+                    timeout = setTimeout(later, remaining);
+                }
+            }
+            return throttle;
+        }
+        // btn.addEventListener('click', underScoreThrottle(cb, 1000, {
+        //     trailing: true,
+        //     leading: false
+        // }));
     </script>
 </body>
 

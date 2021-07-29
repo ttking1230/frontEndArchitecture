@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+    <style>
+        button {
+            width: 300px;
+            height: 100px;
+            background-color: brown;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 防抖定义：一段时间结束后，才能触发一次事件，如果一段时间未结束再次触发事件，则会重新开始计算事件 -->
+    <!-- 防抖  按钮无论点击多少次，点击多块，只触发最后一次的点击 -->
+    <button id="btn">快速点击</button>
+    <script>
+        var btn = document.getElementById('btn');
+        // btn.addEventListener('click', () => {
+        //     console.log('111111111111111');
+        // })
+
+        // 简易防抖
+        function debounce(fn, delay) {
+            let timer = null;
+            return function () {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fn.apply(this, arguments);
+                }, delay);
+            }
+        }
+
+        let cb = () => {
+            console.log('2222222222222');
+        }
+        // btn.addEventListener('click', debounce(cb, 500));
+
+        // underscore库debounce源码实现
+        // 第三个参数为true时，点击的第一次立即触发一次，
+        function underScoreDebounce(fn, delay, immediate) {
+            let timer = null, first = true;
+            return function () {
+                clearTimeout(timer);
+                if (immediate && first) {
+                    fn.apply(this, arguments);
+                    first = false;
+                }
+                timer = setTimeout(() => {
+                    fn.apply(this, arguments);
+                    timer = null;
+                }, delay);
+            }
+        }
+        btn.addEventListener('click', underScoreDebounce(cb, 500, true));
+    </script>
+</body>
+
+</html>

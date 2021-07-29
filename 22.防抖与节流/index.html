@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lodash结合防抖和节流</title>
+    <style>
+        button {
+            width: 300px;
+            height: 100px;
+            background-color: brown;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <script src="./debounce.js"></script>
+</head>
+
+<body>
+    <button id="btn">快速点击</button>
+    <script>
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            console.log('111111111111111');
+        })
+
+
+    </script>
+</body>
+
+</html>
