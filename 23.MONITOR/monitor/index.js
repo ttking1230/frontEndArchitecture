@@ -1,6 +1,6 @@
 
 // 监控页面的性能
-// 监控页面的性能是什么？- 就是算时间差，算一下dns解析用了多久，算一下dom加载用了多久，
+// 1、监控页面的性能是什么？- 就是算时间差，算一下dns解析用了多久，算一下dom加载用了多久，
 // 算一下整个页面加载完成用了多久。不用自己算，浏览器给了个api，Performance api，
 // import perF from './performance.js';
 // let img;
@@ -20,21 +20,22 @@
 //     // img.src = 'reportData?' + formatterObj(data);
 // });
 
-// 监控页面静态资源的加载情况
+///2、监控页面静态资源的加载情况
 // import resource from './resource.js';
 // resource.init((data) => {
 //     console.log(data);
 // });
-// 监控ajax
+
+///3、监控ajax
 
 import xhr from './xhr.js';
 xhr.init((data) => {
     console.log(data);
 });
 
-// 页面的异常捕获（报错）
+// 4、页面的异常捕获（报错）
 import errCatch from './errCatch.js';
 errCatch.init((data) => {
     console.log(data);
 });
-// 监控用户的行为
+// 5、监控用户的行为

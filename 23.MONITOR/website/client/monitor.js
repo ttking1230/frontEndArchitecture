@@ -68,6 +68,6 @@
     errCatch.init((data) => {
         console.log(data);
     });
-    // 监控用户的行为
+    // 5、监控用户的行为
 
 })));
