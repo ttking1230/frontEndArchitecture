@@ -1,4 +1,4 @@
-
+import { updateQueue } from './component';
 
 // 合成事件，并不是把事件绑定到DOM节点上，而是绑定到了document上，类似事件委托
 // 优点：
@@ -21,6 +21,8 @@ function dispatchEvent(event) {
     let eventType = "on" + type; // onclick
     // 在此处给syntheticEvent赋值
     syntheticEvent = getSyntheticEvent(event);
+    // 在事件函数执行前先进入批量更新模式
+    updateQueue.isPending = true;
     // 模拟事件冒泡
     while (target) {
         let { eventStore } = target;
@@ -37,6 +39,9 @@ function dispatchEvent(event) {
             syntheticEvent[key] = null;
         }
     }
+    // 在事件函数执行后，将批量更新模式置为false，
+    updateQueue.isPending = false;
+    updateQueue.batchUpdate();
 }
 
 // persist 持久化(不销毁syntheticEvent合成事件上面的方法和属性)

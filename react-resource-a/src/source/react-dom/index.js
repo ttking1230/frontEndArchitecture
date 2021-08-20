@@ -7,6 +7,7 @@ import { createDom } from "../react/vdom";
 
 export function render(element, container) {
     let dom = createDom(element);
+    console.log(dom);
     container.appendChild(dom);
 }
 

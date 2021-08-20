@@ -1,3 +1,5 @@
+// import React from "react";
+// import ReactDOM from "react-dom";
 
 import React from "./source/react";
 import ReactDom from "./source/react-dom";
@@ -44,8 +46,27 @@ function FunctionCounter() {
     }, "hello");
 }
 
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            number: 0
+        }
+    }
+    handleClick = () => {
+        this.setState({ number: this.state.number + 1 });
+        console.log(this.state.number);
+        this.setState({ number: this.state.number + 1 });
+        console.log(this.state.number);
+    }
+    render() {
+        return <div id={'counter' + this.state.number} onClick={this.handleClick}>+</div>
+    }
+}
+
 // 实现批量更新 setState
-let element11111 = React.createElement(ClassCounter);
-ReactDom.render(element11111, document.getElementById("root"));
+// let element11111 = React.createElement(Counter);
+// console.log(element11111);
+ReactDom.render(<Counter />, document.getElementById("root"));
 
 
