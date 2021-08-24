@@ -99,5 +99,11 @@ export function compareTwoElements(oldRenderElement, newRenderElement) {
         let newDOM = createDom(newRenderElement);
         currentDOM.parentNode.replaceChild(newDOM, currentDOM);
         currentElement = newRenderElement;
+        updateElement(oldRenderElement, newRenderElement);
+
     }
+}
+
+function updateElement(oldElement, newElement) {
+
 }
