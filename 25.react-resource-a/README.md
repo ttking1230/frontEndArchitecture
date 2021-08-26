@@ -25,3 +25,11 @@ React 17 之前，babel会进行转义，调用React.createElement生成虚拟do
 react 17 之后，require("jsx-transform")("div");单独引入个包进行转换，不再使用React.createElement
 如果还想使用React.createElement，scripts需要设置变量 set DISABLE_ENV_JSX_TRANSFORM=true,
 禁用jsx-transform
+
+
+## react dom diff 和 vue dom diff 比较？
+1、react dom diff颠倒性能很差，没做头尾比较优化。react 头移到尾性能最好的，但是尾移到头性能差。
+    头移到尾：其他不动，头部直接移动到尾部。
+    尾移到头：尾没有动，而是前面的元素移动到尾的后面（性能贼差）（最优解应该是尾部移动到头部，其他不动）。
+
+2、react dom diff 要先做标记，再移动。而vue是直接更新真实节点
