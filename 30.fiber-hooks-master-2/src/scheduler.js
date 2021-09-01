@@ -85,6 +85,7 @@ function completeUnitOfWork(currentFiber) {//第一个完成的A1(TEXT)
  * 1.创建真实DOM元素
  * 2.创建子fiber  
  */
+// 根据虚拟节点创建fiber
 function beginWork(currentFiber) {
     if (currentFiber.tag === TAG_ROOT) {//根fiber
         updateHostRoot(currentFiber);
