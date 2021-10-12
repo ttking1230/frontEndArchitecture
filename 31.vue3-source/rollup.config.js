@@ -26,7 +26,7 @@ const name = path.basename(packageDir);
 // 对于打包类型，需要做一个映射表，根据你提供的formats来格式化需要打包的内容
 // 打包出三种类型：（区别详见打包出的文件）
 // esm-bundler：es6，es6规范 import export
-// cjs: node的，commonjs规范 require exports
+// cjs: 是给node去用的，commonjs规范 require exports
 // global：全局的，供script标签引用
 const outputConfig = {
     "esm-bundler": {
