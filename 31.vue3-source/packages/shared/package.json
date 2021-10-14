@@ -5,7 +5,7 @@
   "license": "MIT",
   "module": "dist/shared.esm-bundler.js",
   "buildOptions": {
-    "name": "VueReactivity",
+    "name": "VueShared",
     "formats": [
       "cjs",
       "esm-bundler",

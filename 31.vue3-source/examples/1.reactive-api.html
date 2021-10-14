@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="../node_modules/@vue/reactivity/dist/reactivity.global.js"></script>
+    <script>
+        console.log(VueReactivity);
+        let { reactive,
+            shallowReactive,
+            readonly,
+            shallowReadonly,
+            effect
+        } = VueReactivity;
+
+        let state = reactive({ name: '范子阁', age: 30 });
+        console.log(state);
+
+        effect(() => {
+            app.innerHTML = `${state.name}今年${state.age}岁`
+        });
+
+        setTimeout(() => {
+            state.name = "xxxxx";
+        }, 3000);
+    </script>
+</body>
+
+</html>

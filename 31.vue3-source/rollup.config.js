@@ -43,8 +43,10 @@ const outputConfig = {
     }
 }
 
+// 每个模块的package.json中的自定义选项
+const options = pkg.buildOptions;
 function creatConfig(format, output) {
-    output.name = format.name;
+    output.name = options.name;
     output.sourcemap = true;
     // ts规范，使用typescript必须配置tsconfig.json
     // 使用ts插件的话，需要配置tsconfig.json配置文件
@@ -62,6 +64,5 @@ function creatConfig(format, output) {
     };
 }
 
-// 每个模块的package.json中的自定义选项
-const options = pkg.buildOptions;
+
 export default options.formats.map(format => creatConfig(format, outputConfig[format]));
