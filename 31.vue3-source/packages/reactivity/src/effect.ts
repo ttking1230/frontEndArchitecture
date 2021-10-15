@@ -1,3 +1,5 @@
+import { isArray, isIntergerKey } from "@vue/shared";
+import { TriggerOpType } from "./operator";
 
 
 export function effect(fn, options: any = {}) {
@@ -50,11 +52,57 @@ export function track(target, type, key) {
     if (!dep.has(activeEffect)) {
         dep.add(activeEffect);
     }
-    console.log(targetMap);
+    // console.log(targetMap);
 }
 
 // ts ? 表示可传可不传
 export function trigger(target, type, key?, newValue?, oldValue?) {
-    console.log("trigger", target, type, key, newValue, oldValue);
+    // console.log("trigger", target, type, key, newValue, oldValue);
+    // 如果target没有收集过effect，不需要做任务操作
+    const depsMap = targetMap.get(target);
+    if (!depsMap) return;
+
+
+    // 收集所有需要执行的effect，最终统一一起执行
+    const effects = new Set();
+    const add = (effectsToAdd) => {
+        if (effectsToAdd) {
+            effectsToAdd.forEach(effect => effects.add(effect))
+
+        }
+
+    }
+    // 1、看修改的是否是数组的长度，修改数组的长度影响比较大且麻烦
+    if (key === "length" && isArray(target)) {
+        depsMap.forEach((dep, key) => {
+            console.log(dep);
+            console.log(key);
+            console.log(Number(key));
+
+            if (key === "length" || key > newValue) {
+                add(dep);
+            }
+        });
+
+    } else {
+        // 可能是对象
+        if (key !== undefined) {
+            // 此处肯定是修改，，不是新增
+            add(depsMap.get(key));
+        }
+        // 如果修改数组中的某一个索引
+        switch (type) {
+            case TriggerOpType.ADD:
+                if (isArray(target) && isIntergerKey(key)) {
+                    // 如果添加一个索引(arr[100]=11)，就触发长度的更新
+                    add(depsMap.get("length"));
+                }
+        }
+    }
+    effects.forEach((effect: any) => effect());
+
+
+
+
 
 }
