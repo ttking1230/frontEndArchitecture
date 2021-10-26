@@ -52,7 +52,7 @@ class ObjectRefImpl {
     public __v_isRef = true;
     constructor(public target, public key) { }
     get value() {
-        // 代理
+        // 代理，代理，代理
         return this.target[this.key];
     }
     set value(newValue) {

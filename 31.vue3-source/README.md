@@ -18,3 +18,7 @@ Reflect方法具备返回值  。。。
 （页面直接使用数组：app.innerHTML = state.arr）
 会的，因为需要把当前数组转成字符串，转字符串会调用toString方法，调用toString方法就会取数组的
 length属性，这是数组的一个特点
+
+
+### monorepo 越来越重要了
+一个项目下管理多个包，element-plus这种方式，每个组件是一个包
